@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+/* /Bwhite.Dev/app/global.css */
+
+/* Default Light Theme */
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --secondary-background: #b1b1b1; /* Secondary background for light theme */
+    --font-sans: 'GeistSans', sans-serif;
+    --font-mono: 'GeistMono', monospace;
+}
+
+/* Ocean Theme */
+[data-theme='ocean'] {
+    --background: #1e3053;
+    --foreground: #ededed;
+    --secondary-background: #a5750398; /* Yellow-gold, complementary to blue */
+}
+
+/* Custom Dark Theme */
+[data-theme='dark'] {
+    --background: #000000;
+    --foreground: #ffffff;
+    --secondary-background: #333333; /* White, complementary to black */
+}
+
+/* Forest Theme */
+[data-theme='forest'] {
+    --background: #2e422d;
+    --foreground: #d4e157;
+    --secondary-background: #cf5f3c; /* A reddish-orange, complementary to green */
+}
+
+/* Custom System Theme */
+[data-theme='system'] {
+    --background: #ffffff; /* Will adapt to system light/dark */
+    --foreground: #171717;
+    --secondary-background: #171717; /* Default to black as secondary for light */
+}
+
+/* Custom Body Styles */
+body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+/* Example usage of secondary background */
+.secondary-background {
+    background-color: var(--secondary-background);
+}
+
+/* Use secondary background where necessary */
+.secondary-background {
+    background-color: var(--secondary-background);
+}
+
+@custom-variant dark (&:is(.dark *));
