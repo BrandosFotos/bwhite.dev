@@ -1,38 +1,33 @@
 import React from 'react';
-import Image from 'next/image';
-import { Fredoka } from 'next/font/google';
 
-
+import SubHero from '@/components/ui/SubHero';
 
 const Example: React.FC = () => {
     return (
         <div>
             {/* We get the font from the Google Fonts API and introduce the hero section. */}
-            <main className="{Fredoka.variable} flex flex-col gap-8 row-start-2 items-center">
+            <main className='{Fredoka.variable} row-start-2 flex flex-col items-center gap-8'>
+                {/* Hero Section */}
+                <h1 className='{styles.text} text-5xl'>&lt;Bwhite.dev&gt;</h1>
 
-              {/* Hero Section */}
-              <h1 className="{styles.text} text-5xl">
-                &lt;Bwhite.dev&gt;
-              </h1>
-
-              {/* This is where i built the svg for my Logo:
+                {/* This is where i built the svg for my Logo:
               https://danmarshall.github.io/google-font-to-svg-path/ */}
 
+                {/* Unordered list, to keep items organized */}
+                <ul className='list-inside text-center font-[family-name:var(--font-geist-mono)] text-sm sm:text-left'>
+                    <SubHero />
+                </ul>
 
-              {/* Unordered list, to keep items organized */}
-              <ul className="list-inside text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-                <li className="mb-2">Coder, Designer, and Content Creator.</li>
-                <li>Scroll & Peek into my brain.</li>
-              </ul>
-              
-              {/* Button to scoll user to Projects Section */}
-              <div className="flex gap-4 items-center flex-col sm:flex-row">
-                <a className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44" href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app" target="_blank" rel="noopener noreferrer">
-                  Projects
-                </a>
-
-              </div>
-
+                {/* Button to scoll user to Projects Section */}
+                <div className='flex flex-col items-center gap-4 sm:flex-row'>
+                    <a
+                        className='flex h-10 items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:min-w-44 sm:px-5 sm:text-base dark:border-white/[.145] dark:hover:bg-[#1a1a1a]'
+                        href='https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app'
+                        target='_blank'
+                        rel='noopener noreferrer'>
+                        Projects
+                    </a>
+                </div>
             </main>
         </div>
     );

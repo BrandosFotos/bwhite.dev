@@ -13,8 +13,8 @@ export default function Home() {
 
             <main>
                 <Hero />
+                {/* <Education /> */}
                 <ThemeSwitch />
-                <Education />
             </main>
 
             <Footer />

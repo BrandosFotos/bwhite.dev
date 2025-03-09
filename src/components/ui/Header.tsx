@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
-import ThemeSwitch from './ThemeSwitch';
+import ThemeSwitcher from '@/components/ui/ThemeSwitch';
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
                 <Link href='/projects' className='mx-4 hover:opacity-70'>
                     Projects
                 </Link>
-                {/* <ThemeSwitch className='p-4' /> */}
+                <ThemeSwitcher />
             </div>
 
             {/* Support Button */}

@@ -15,7 +15,8 @@
 [data-theme='ocean'] {
     --background: #1e3053;
     --foreground: #ededed;
-    --secondary-background: #a5750398; /* Yellow-gold, complementary to blue */
+    --secondary-background: #a5750398;
+    --text-color: #ffffff;
 }
 
 /* Pink Theme */
@@ -62,8 +63,8 @@ body {
 }
 
 /* Use secondary background where necessary */
-.secondary-background {
-    background-color: var(--secondary-background);
+.forground-background {
+    background-color: var(--foreground);
 }
 
 /* @custom-variant dark (&:is(.dark *)); */
