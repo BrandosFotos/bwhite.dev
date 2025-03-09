@@ -41,6 +41,22 @@ const SWITCH_DATA: SwitchOption[] = [
         )
     },
     {
+        name: 'Femme',
+        value: 'pink',
+        iconSvg: (
+            <svg xmlns='http://www.w3.org/2000/svg' className='size-4' viewBox='0 0 24 24'>
+                <path
+                    fill='none'
+                    stroke='currentColor'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M12 21s-6-4.5-6-10 2.5-6 6-6 6 2.5 6 6-6 10-6 10z'
+                />
+            </svg>
+        )
+    },
+    {
         name: 'Forest',
         value: 'forest',
         iconSvg: (
@@ -83,7 +99,7 @@ const ThemeSwitch: React.FC = () => {
 
     return (
         <div className='w-fit'>
-            <div className='flex w-auto flex-row justify-center overflow-hidden rounded-3xl border border-neutral-200 bg-[var(--secondary-background)] sm:flex-row'>
+            <div className='flex w-auto flex-row justify-center overflow-hidden rounded-3xl border border-transparent bg-[var(--secondary-background)] group-[data-theme=light]:border group-[data-theme=pink]:border sm:flex-row'>
                 {SWITCH_DATA.map((data) => (
                     <button
                         key={data.value}

@@ -18,6 +18,13 @@
     --secondary-background: #a5750398; /* Yellow-gold, complementary to blue */
 }
 
+/* Pink Theme */
+[data-theme='pink'] {
+    --background: hsl(308, 72%, 90%);
+    --foreground: #363636;
+    --secondary-background: #effdba; /* Yellow-gold, complementary to blue */
+}
+
 /* Custom Dark Theme */
 [data-theme='dark'] {
     --background: #000000;
