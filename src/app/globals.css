@@ -66,4 +66,4 @@ body {
     background-color: var(--secondary-background);
 }
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); */

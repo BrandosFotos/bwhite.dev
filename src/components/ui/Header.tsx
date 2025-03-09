@@ -27,8 +27,7 @@ const Header: React.FC = () => {
     }, []);
 
     return (
-        <nav
-            className={`flex flex-wrap items-center justify-between p-6 transition-all duration-300 ${theme === 'dark' ? 'bg-[#1e3053] text-white' : ''} ${theme === 'forest' ? 'bg-[#2e422d] text-[#d4e157]' : ''} ${theme === 'light' ? 'bg-white text-black' : ''}`}>
+        <nav className={`flex flex-wrap items-center justify-between p-6 transition-all duration-300`}>
             {/* Logo */}
             <div className='mr-6 flex flex-shrink-0 items-center'>
                 <svg
