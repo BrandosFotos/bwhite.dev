@@ -1,119 +1,79 @@
 'use client';
 
-import { JSX, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-interface SwitchOption {
-    name: string;
-    value: string;
-    iconSvg: JSX.Element;
-}
+import styles from '@/components/ui/FramerStyles/Theme.module.scss';
 
-const SWITCH_DATA: SwitchOption[] = [
-    {
-        name: 'Light',
-        value: 'light',
-        iconSvg: (
-            <svg xmlns='http://www.w3.org/2000/svg' className='size-5' viewBox='0 0 24 24'>
-                <path
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7'></path>
-            </svg>
-        )
-    },
-    {
-        name: 'Dark',
-        value: 'dark',
-        iconSvg: (
-            <svg xmlns='http://www.w3.org/2000/svg' className='size-4' viewBox='0 0 24 24'>
-                <path
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z'
-                />
-            </svg>
-        )
-    },
-    {
-        name: 'Femme',
-        value: 'pink',
-        iconSvg: (
-            <svg xmlns='http://www.w3.org/2000/svg' className='size-4' viewBox='0 0 24 24'>
-                <path
-                    fill='none'
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M12 21s-6-4.5-6-10 2.5-6 6-6 6 2.5 6 6-6 10-6 10z'
-                />
-            </svg>
-        )
-    },
-    {
-        name: 'Forest',
-        value: 'forest',
-        iconSvg: (
-            <svg xmlns='http://www.w3.org/2000/svg' className='size-4' viewBox='0 0 24 24'>
-                <path fill='currentColor' d='M1 2h22v8.25h-2V4H3v12h8.5v2H1zm2 18h8.5v2H3z'></path>
-                <path
-                    fill='currentColor'
-                    d='M19.5 12v1.376c.715.184 1.352.56 1.854 1.072l1.193-.689l1 1.732l-1.192.688a4 4 0 0 1 0 2.142l1.192.688l-1 1.732l-1.193-.689a4 4 0 0 1-1.854 1.072V22.5h-2v-1.376a4 4 0 0 1-1.854-1.072l-1.193.689l-1-1.732l1.192-.688a4 4 0 0 1 0-2.142l-1.192-.688l1-1.732l1.193.688a4 4 0 0 1 1.854-1.071V12zm-2.751 4.283a2 2 0 0 0-.25.967c0 .35.091.68.25.967l.036.063a2 2 0 0 0 3.43 0l.036-.063c.159-.287.249-.616.249-.967c0-.35-.09-.68-.249-.967l-.036-.063a2 2 0 0 0-3.43 0z'></path>
-            </svg>
-        )
-    },
-    {
-        name: 'Ocean',
-        value: 'ocean',
-        iconSvg: (
-            <svg xmlns='http://www.w3.org/2000/svg' className='size-4' viewBox='0 0 24 24'>
-                <path fill='currentColor' d='M1 2h22v8.25h-2V4H3v12h8.5v2H1zm2 18h8.5v2H3z'></path>
-                <path
-                    fill='currentColor'
-                    d='M19.5 12v1.376c.715.184 1.352.56 1.854 1.072l1.193-.689l1 1.732l-1.192.688a4 4 0 0 1 0 2.142l1.192.688l-1 1.732l-1.193-.689a4 4 0 0 1-1.854 1.072V22.5h-2v-1.376a4 4 0 0 1-1.854-1.072l-1.193.689l-1-1.732l1.192-.688a4 4 0 0 1 0-2.142l-1.192-.688l1-1.732l1.193.688a4 4 0 0 1 1.854-1.071V12zm-2.751 4.283a2 2 0 0 0-.25.967c0 .35.091.68.25.967l.036.063a2 2 0 0 0 3.43 0l.036-.063c.159-.287.249-.616.249-.967c0-.35-.09-.68-.249-.967l-.036-.063a2 2 0 0 0-3.43 0z'></path>
-            </svg>
-        )
-    }
+import { MagicTabSelect } from 'react-magic-motion';
+
+const themes = [
+    { name: 'Light', value: 'light' },
+    { name: 'Dark', value: 'dark' },
+    { name: 'Femme', value: 'pink' },
+    { name: 'Forest', value: 'forest' },
+    { name: 'Ocean', value: 'ocean' }
 ];
 
-const ThemeSwitch: React.FC = () => {
-    const [theme, setTheme] = useState<string>('system');
+const ThemeSwitch = () => {
+    const [activeTheme, setActiveTheme] = useState(themes[0]);
+    const [hoveredIndex, setHoveredIndex] = useState(0);
     const [mounted, setMounted] = useState(false);
 
-    // Set theme when mounted, and handle system default theme
     useEffect(() => {
         setMounted(true);
         const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        if (theme === 'system') {
-            document.documentElement.setAttribute('data-theme', systemTheme);
-        } else {
-            document.documentElement.setAttribute('data-theme', theme);
-        }
-    }, [theme]);
+        const currentTheme = activeTheme.value === 'system' ? systemTheme : activeTheme.value;
+
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        // Dynamically set CSS variables based on selected theme
+        document.documentElement.style.setProperty(
+            '--background-color-light',
+            currentTheme === 'light'
+                ? '#ffffff'
+                : currentTheme === 'dark'
+                  ? '#181818'
+                  : currentTheme === 'pink'
+                    ? '#f1c6d2'
+                    : currentTheme === 'forest'
+                      ? '#2f4f4f'
+                      : '#66a3cc'
+        );
+        document.documentElement.style.setProperty(
+            '--text-color-light',
+            currentTheme === 'light'
+                ? '#000000'
+                : currentTheme === 'dark'
+                  ? '#ffffff'
+                  : currentTheme === 'pink'
+                    ? '#d70070'
+                    : currentTheme === 'forest'
+                      ? '#b6d7a8'
+                      : '#ffffff'
+        );
+    }, [activeTheme]);
+
+    const handleClick = (theme: { name: string; value: string }, index: number) => {
+        setActiveTheme(theme);
+        setHoveredIndex(index);
+    };
 
     return (
-        <div className='w-fit'>
-            <div className='flex w-auto flex-row justify-center overflow-hidden rounded-3xl border border-transparent bg-[var(--secondary-background)] group-[data-theme=light]:border group-[data-theme=pink]:border sm:flex-row'>
-                {SWITCH_DATA.map((data) => (
-                    <button
-                        key={data.value}
-                        className={`flex items-center gap-2 px-4 py-2 ${
-                            theme === data.value && mounted ? 'bg-neutral-200 dark:bg-neutral-700' : 'bg-transparent'
-                        } dark:hover:bg-neutral-800`}
-                        onClick={() => {
-                            setTheme(data.value); // Update theme
-                        }}>
-                        {data.iconSvg}
-                        <h3 className='hidden sm:block'>{data.name}</h3>
-                    </button>
-                ))}
-            </div>
+        <div className={styles.pillTabsContainer}>
+            {themes.map((theme, index) => (
+                <button
+                    key={theme.value}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onClick={() => handleClick(theme, index)}
+                    className={styles.pillTab}>
+                    {hoveredIndex === index && (
+                        <MagicTabSelect id='pillTabs' transition={{ type: 'spring', bounce: 0.35 }}>
+                            <span className={styles.indicator} />
+                        </MagicTabSelect>
+                    )}
+                    <span className={styles.pillTabText}>{theme.name}</span>
+                </button>
+            ))}
         </div>
     );
 };

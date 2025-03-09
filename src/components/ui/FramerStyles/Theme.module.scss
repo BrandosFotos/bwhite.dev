@@ -1,0 +1,39 @@
+/* Theme.module.scss */
+
+.pillTabsContainer {
+    display: flex;
+    border-radius: 50px;
+    gap: 0.75rem;
+    margin: 0.75rem 0;
+    background-color: var(--primary-background); /* Default color */
+}
+
+.pillTab {
+    position: relative;
+    padding: 0.65rem 0.75rem;
+    background-color: var(--secondary-background); /* Default color */
+    color: var(--foreground-background); /* Default text color */
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.pillTab:hover {
+    background-color: var(--primary-background); /* Optional hover effect */
+}
+
+.pillTab .indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: white;
+    border-radius: 999px;
+    mix-blend-mode: difference;
+}
+
+.pillTabText {
+    z-index: 5; /* Keeps text above the indicator */
+}
