@@ -7,11 +7,11 @@ import styles from '@/components/ui/FramerStyles/Theme.module.scss';
 import { MagicTabSelect } from 'react-magic-motion';
 
 const themes = [
-    { name: 'Light', value: 'light' },
-    { name: 'Dark', value: 'dark' },
-    { name: 'Femme', value: 'pink' },
-    { name: 'Forest', value: 'forest' },
-    { name: 'Ocean', value: 'ocean' }
+    { name: 'Light', value: 'light', icon: '/light.svg' },
+    { name: 'Dark', value: 'dark', icon: '/dark.svg' },
+    { name: 'Femme', value: 'pink', icon: '/flower.svg' },
+    { name: 'Forest', value: 'forest', icon: '/tree.svg' },
+    { name: 'Ocean', value: 'ocean', icon: '/waves.svg' }
 ];
 
 const ThemeSwitch = () => {
@@ -53,7 +53,7 @@ const ThemeSwitch = () => {
         );
     }, [activeTheme]);
 
-    const handleClick = (theme: { name: string; value: string }, index: number) => {
+    const handleClick = (theme: { name: string; value: string; icon: string }, index: number) => {
         setActiveTheme(theme);
         setHoveredIndex(index);
     };
@@ -71,7 +71,9 @@ const ThemeSwitch = () => {
                             <span className={styles.indicator} />
                         </MagicTabSelect>
                     )}
-                    <span className={styles.pillTabText}>{theme.name}</span>
+                    <span>
+                        <img src={theme.icon} width={20} alt={theme.name} />
+                    </span>
                 </button>
             ))}
         </div>

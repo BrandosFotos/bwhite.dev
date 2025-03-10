@@ -14,7 +14,7 @@ export default function Home() {
             <main>
                 <Hero />
                 {/* <Education /> */}
-                <ThemeSwitch />
+                {/* <ThemeSwitch /> */}
             </main>
 
             <Footer />

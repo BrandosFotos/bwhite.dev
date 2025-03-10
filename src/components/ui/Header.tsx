@@ -80,6 +80,9 @@ const Header: React.FC = () => {
                 <Link href='/projects' className='mx-4 hover:opacity-70'>
                     Projects
                 </Link>
+            </div>
+
+            <div className='hidden lg:block'>
                 <ThemeSwitcher />
             </div>
 
